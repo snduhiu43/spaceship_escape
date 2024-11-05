@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 17e0a34ad04fb0740bd259fb6394dcbc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - obstaclePrefab: {fileID: 8794699826309350975, guid: d54cb46d361143e40b1199cbbce038b5, type: 3}
+  - fuelPrefab: {fileID: 4580930794799594460, guid: 25c596fc037f64c4d9be90b08aa9f04f, type: 3}
+  - playerTransform: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
