@@ -21,7 +21,7 @@ public class destroyAfterPass : MonoBehaviour
         if (player != null && transform.position.z > player.transform.position.z + destroyDistance)
         {
             Destroy(gameObject);
-            Debug.Log(gameObject.name + " destroyed after player passed.");
+            // Debug.Log(gameObject.name + " destroyed after player passed.");
         }
     }
 }

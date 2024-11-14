@@ -39,7 +39,7 @@ public class spawnManager : MonoBehaviour
 	void SpawnSpacePrefabs()
     {
         // Random x position within the range
-        float randomX = Random.Range(-22.5f, -21.5f);
+        float randomX = Random.Range(-1, 4);
 
         // Calculate spawn position in front of the player
         Vector3 spawnPos = new Vector3(randomX, fixedY, player.transform.position.z - spawnDistance);

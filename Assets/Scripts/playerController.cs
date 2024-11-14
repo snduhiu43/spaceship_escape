@@ -7,7 +7,6 @@ public class playerController : MonoBehaviour
     public float speed = 10f;
     public float horizontalSpeed = 10f;
 	public float speedIncrease = 5f;
-	public float horizontalInput;
 	
 	public AudioClip fuelCollectSound;
     public AudioClip collisionSound;
@@ -17,6 +16,7 @@ public class playerController : MonoBehaviour
 	
 	private GameManager gameManager;
 	private Rigidbody playerRb;
+	private Gyroscope gyro;
 	
 	// Start is called before the first frame update
     void Start()
@@ -25,6 +25,10 @@ public class playerController : MonoBehaviour
 		playerAudio = GetComponent<AudioSource>();
 		
 		gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+		
+		//Enable gyroscope
+		gyro = Input.gyro;
+        gyro.enabled = true;
     }
 
     // Update is called once per frame
@@ -32,14 +36,19 @@ public class playerController : MonoBehaviour
     {
        if (gameManager.isGameActive) 
 	   {
-		   //get hirizontal inputs from user
-			horizontalInput = Input.GetAxis("Horizontal");
+			// Use gyroscope's rotation rate for horizontal movement
+            float tilt = gyro.rotationRateUnbiased.y; // Left-right rotation
 	   
-		   //move spaceship constantly forward
-		   transform.Translate(Vector3.back * Time.deltaTime * horizontalSpeed);
+			//move spaceship constantly forward
+			transform.Translate(Vector3.back * Time.deltaTime * horizontalSpeed);
 		   
-		   // Move spaceship left or right based on horizontal input
-		   transform.Rotate(Vector3.up * horizontalSpeed * Time.deltaTime * horizontalInput);
+			// Move spaceship left or right based on horizontal input
+			transform.Rotate(Vector3.up * horizontalSpeed * Time.deltaTime * tilt);
+			
+			// Clamp the ship's x position between -24 and -20
+			Vector3 clampedPosition = transform.position;
+			clampedPosition.x = Mathf.Clamp(clampedPosition.x, -3, 6);
+			transform.position = clampedPosition;
 	   }
     }
 	
